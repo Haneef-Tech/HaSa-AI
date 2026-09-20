@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="ring" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="0.45" stop-color="#7C3AED"/>
+      <stop offset="0.75" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <radialGradient id="core" cx="0.5" cy="0.42" r="0.65">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.45" stop-color="#C4B5FD"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0.15"/>
+    </radialGradient>
+  </defs>
+  <rect width="48" height="48" rx="11" fill="#0C0E14"/>
+  <circle cx="24" cy="24" r="20.5" stroke="url(#ring)" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="3 5" fill="none"/>
+  <path d="M24 6L39.5 15v18L24 42L8.5 33V15L24 6Z" stroke="url(#ring)" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+  <path d="M24 13.5L33 18.7v10.6L24 34.5l-9-5.2V18.7l9-5.2Z" stroke="url(#ring)" stroke-width="1.4" stroke-linejoin="round" stroke-opacity="0.85" fill="none"/>
+  <circle cx="24" cy="3.5" r="2.6" fill="#22D3EE"/>
+  <circle cx="24" cy="24" r="5.2" fill="url(#core)"/>
+</svg>

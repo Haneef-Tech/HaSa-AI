@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    // User root doc: owner only.
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      // Conversations owned by the user.
+      match /conversations/{conversationId} {
+        allow read, write: if isOwner(userId);
+
+        // Messages inside the user's own conversation.
+        match /messages/{messageId} {
+          allow read, write: if isOwner(userId);
+        }
+      }
+
+      // Saved highlights owned by the user.
+      match /saved-items/{savedItemId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Preferences (e.g. users/{uid}/preferences/main).
+      match /preferences/{prefId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Server-written usage analytics — never client-readable.
+    match /users/{userId}/usage/{usageId} {
+      allow read, write: if false;
+    }
+
+    // Admin runtime config (provider keys) — Admin SDK only, never clients.
+    match /admin/{doc=**} {
+      allow read, write: if false;
+    }
+
+    // Deny everything else by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

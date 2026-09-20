@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+/.next/
+/out/
+
+# env (never commit secrets)
+/.env
+/.env.local
+/.env*.local
+
+# firebase
+.firebase/
+.firebaserc
+firestore-debug.log
+firestore-debug.log*
+ui-debug.log
+
+# misc
+*.log
+.DS_Store
+Thumbs.db
